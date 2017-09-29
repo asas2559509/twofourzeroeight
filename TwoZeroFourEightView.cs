@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace twozerofoureight
 {
@@ -23,6 +24,7 @@ namespace twozerofoureight
             controller = new TwoZeroFourEightController();
             controller.AddModel(model);
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            
         }
 
         public void Notify(Model m)
@@ -38,6 +40,7 @@ namespace twozerofoureight
             } else {
                 l.Text = "";
             }
+            //l.Font =  new Font("Arial", 4);
             switch (i)
             {
                 case 0:
@@ -76,6 +79,7 @@ namespace twozerofoureight
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
         }
+        
 
         private void btnLeft_Click(object sender, EventArgs e)
         {
@@ -97,5 +101,31 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.DOWN);
         }
 
+        private void lbl30_Click(object sender, EventArgs e)
+        {
+
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if(keyData == Keys.Left)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.LEFT);
+            }
+            if (keyData == Keys.Right)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.RIGHT);
+            }
+            if (keyData == Keys.Up)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.UP);
+            }
+            if (keyData == Keys.Down)
+            {
+                controller.ActionPerformed(TwoZeroFourEightController.DOWN);
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        
     }
 }
