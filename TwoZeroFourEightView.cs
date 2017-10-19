@@ -66,7 +66,7 @@ namespace twozerofoureight
             UpdateTile(lbl01,board[0, 1]);
             UpdateTile(lbl02,board[0, 2]);
             UpdateTile(lbl03,board[0, 3]);
-            UpdateTile(lbl10,board[1, 0]);
+            UpdateTile(lbl04,board[1, 0]);
             UpdateTile(lbl11,board[1, 1]);
             UpdateTile(lbl12,board[1, 2]);
             UpdateTile(lbl13,board[1, 3]);
@@ -78,6 +78,21 @@ namespace twozerofoureight
             UpdateTile(lbl31,board[3, 1]);
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
+
+            lbl00.Font = new Font("Microsoft Sans Serif", 10);
+           
+            int sum = 0;
+            for(int i = 0 ;i <=3 ;i++){
+      
+                for(int j = 0 ;j<=3 ;j++){
+                    sum += board[i, j] ;
+                }
+
+            }
+            label1.Text = sum.ToString();
+           
+
+
         }
         
 
@@ -126,6 +141,14 @@ namespace twozerofoureight
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
