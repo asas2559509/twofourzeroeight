@@ -26,10 +26,59 @@ namespace twozerofoureight
             controller.ActionPerformed(TwoZeroFourEightController.LEFT);
             
         }
-
+        
         public void Notify(Model m)
         {
             UpdateBoard(((TwoZeroFourEightModel) m).GetBoard());
+            UpdateScore(((TwoZeroFourEightModel)m).GetScore());
+            UpdateGameOver(((TwoZeroFourEightModel)m).GetBoard());
+        }
+        public void UpdateScore(int score)
+        {
+            label1.Text = score.ToString();
+
+        }
+        private void UpdateGameOver(int[,] Board)
+        {
+            bool a = true, b = true;
+            for (int i = 0; i < 4; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    if (Board[i, j] == 0)
+                    {
+                        a = true;
+                        break;
+                    }
+                    else a = false;
+                }
+                if (a)
+                {
+                    break;
+                }
+                else if (i == 3)
+                {
+                    for (int k = 0; k < 3; k++)
+                    {
+                        for (int q = 0; q < 3; q++)
+                        {
+                            if (Board[k, q] == Board[k, q + 1] || Board[k, q] == Board[k + 1, q])
+                            {
+                                b = true;
+                                break;
+                            }
+                            else b = false;
+                        }
+                        if (Board[k, 3] == Board[k + 1, 3]) b = true;
+                        if (b) break;
+                    }
+                    if (b)
+                    {
+                        return;
+                    }
+                    else label2.Text = "Gameover";
+                }
+            }
         }
 
         private void UpdateTile(Label l, int i)
@@ -79,19 +128,8 @@ namespace twozerofoureight
             UpdateTile(lbl32,board[3, 2]);
             UpdateTile(lbl33,board[3, 3]);
 
-            lbl00.Font = new Font("Microsoft Sans Serif", 10);
-           
-            int sum = 0;
-            for(int i = 0 ;i <=3 ;i++){
-      
-                for(int j = 0 ;j<=3 ;j++){
-                    sum += board[i, j] ;
-                }
-
-            }
-            label1.Text = sum.ToString();
-           
-
+            //lbl00.Font = new Font("Microsoft Sans Serif", 10);
+          
 
         }
         
@@ -146,7 +184,8 @@ namespace twozerofoureight
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+        private void TwoZeroFourEightView_Load(object sender, EventArgs e)
         {
 
         }
